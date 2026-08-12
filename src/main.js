@@ -4,7 +4,9 @@ import { seoulDongs } from "./data/seoulDongs";
 import { seoulGuOrder } from "./data/seoulGuOrder";
 import { supabase } from "./supabase";
 import { koreaRegions } from "./data/koreaRegions";
+import { inject } from "@vercel/analytics";
 
+inject();
 
 const app = document.querySelector("#app");
 
