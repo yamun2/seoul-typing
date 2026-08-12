@@ -2734,7 +2734,7 @@ if (nicknameTaken) {
         password,
 
         options: {
-          emailRedirectTo: "http://localhost:5173",
+          emailRedirectTo: "https://seoul-typing.vercel.app",
 
           data: {
             nickname,
@@ -9441,6 +9441,59 @@ function renderCurrentDong() {
 renderCurrentDong();
 renderDongNavigation();
 
+
+function ensureGameTimerStarted() {
+  if (startTime !== null) {
+    return;
+  }
+
+  const now = Date.now();
+
+  startTime = now;
+
+  if (
+    gameMode === "tour" &&
+    tourStartTime === null
+  ) {
+    tourStartTime = now;
+  }
+
+  /* 서버 게임 세션 생성 */
+  if (
+    !currentGameSessionId &&
+    !currentGameSessionPromise
+  ) {
+    const sessionMode =
+      gameMode === "tour"
+        ? "tour"
+        : "region";
+
+    const sessionTarget =
+      gameMode === "tour"
+        ? "서울특별시"
+        : guName;
+
+    currentGameSessionPromise =
+      startGameSession(
+        sessionMode,
+        sessionTarget
+      );
+  }
+
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+
+  timerInterval =
+    setInterval(
+      () => {
+        updateTimerAndSpeed();
+      },
+      100
+    );
+}
+
+
 function updateTimerAndSpeed() {
   if (gameMode === "tour") {
     if (tourStartTime === null) return;
@@ -9531,73 +9584,23 @@ typingInput.addEventListener(
     }
 
 
-    playSoundEffect(
-      "typing"
-    );
+    const isMobileDevice =
+  /iPhone|iPad|iPod|Android/i.test(
+    navigator.userAgent
+  );
+
+if (!isMobileDevice) {
+  playSoundEffect(
+    "typing"
+  );
+}
 
 
     /* =====================================================
        TIMER START
     ===================================================== */
 
-    if (
-      startTime === null
-    ) {
-
-      startTime =
-        Date.now();
-
-
-      if (
-        gameMode === "tour" &&
-        tourStartTime === null
-      ) {
-
-        tourStartTime =
-          Date.now();
-
-      }
-
-
-      /* 서버 게임 세션 생성 */
-
-      if (
-        !currentGameSessionId &&
-        !currentGameSessionPromise
-      ) {
-
-        const sessionMode =
-          gameMode === "tour"
-            ? "tour"
-            : "region";
-
-
-        const sessionTarget =
-          gameMode === "tour"
-            ? "서울특별시"
-            : guName;
-
-
-        currentGameSessionPromise =
-          startGameSession(
-            sessionMode,
-            sessionTarget
-          );
-
-      }
-
-
-      timerInterval =
-        setInterval(
-          () => {
-
-            updateTimerAndSpeed();
-
-          },
-          100
-        );
-
-    }
+   ensureGameTimerStarted();
 
 
     /* =====================================================
@@ -10139,6 +10142,8 @@ function moveGuMapToDong(
 typingInput.addEventListener(
   "input",
   () => {
+
+      ensureGameTimerStarted();
 
     /* =====================================================
        실제로 맞게 입력되어 있는 키 수 계산
