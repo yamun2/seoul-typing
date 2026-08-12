@@ -18402,3 +18402,252 @@ and
   }
 
 }
+
+/* =========================================================
+   AUTH SCREEN - MOBILE FINAL
+========================================================= */
+
+@media (max-width: 700px) {
+
+  /* 전체 화면 */
+  .auth-screen {
+    box-sizing: border-box !important;
+
+    width: 100% !important;
+    min-height: 100svh !important;
+
+    padding:
+      calc(18px + env(safe-area-inset-top))
+      18px
+      calc(30px + env(safe-area-inset-bottom)) !important;
+
+    overflow-x: hidden !important;
+
+    background: #f8f8ff !important;
+  }
+
+
+  /* 상단 */
+  .auth-topbar {
+    width: 100% !important;
+
+    margin: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+
+  .auth-back-button {
+    height: 40px !important;
+
+    padding: 0 14px !important;
+
+    font-size: 12px !important;
+  }
+
+
+  .auth-brand {
+    font-size: 12px !important;
+    letter-spacing: 0.14em !important;
+
+    white-space: nowrap !important;
+  }
+
+
+  /* =========================
+     핵심: 2단 → 1단
+  ========================= */
+
+  .auth-layout,
+  .signup-layout {
+    box-sizing: border-box !important;
+
+    width: 100% !important;
+
+    margin: 38px auto 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 24px !important;
+
+    align-items: stretch !important;
+  }
+
+
+  /* 왼쪽의 거대한 소개 영역 */
+  .auth-intro,
+  .signup-layout .auth-intro {
+    box-sizing: border-box !important;
+
+    width: 100% !important;
+
+    padding: 0 4px !important;
+
+    text-align: left !important;
+  }
+
+
+  .auth-kicker {
+    margin: 0 0 8px !important;
+
+    font-size: 10px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+
+  .auth-intro h1,
+  .signup-layout .auth-intro h1 {
+    margin: 0 !important;
+
+    font-size: 30px !important;
+    line-height: 1.2 !important;
+    letter-spacing: -1.5px !important;
+
+    word-break: keep-all !important;
+    overflow-wrap: normal !important;
+  }
+
+
+  .auth-description,
+  .signup-layout .auth-description {
+    margin: 10px 0 0 !important;
+
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+
+    word-break: keep-all !important;
+  }
+
+
+  /* =========================
+     로그인 / 회원가입 카드
+  ========================= */
+
+  .auth-card,
+  .signup-card {
+    box-sizing: border-box !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+
+    padding: 25px 20px 23px !important;
+
+    border-radius: 22px !important;
+  }
+
+
+  .auth-card-header,
+  .signup-card .auth-card-header {
+    margin-bottom: 21px !important;
+  }
+
+
+  .auth-card-badge,
+  .signup-card .auth-card-badge {
+    margin-bottom: 9px !important;
+
+    padding: 6px 9px !important;
+
+    font-size: 10px !important;
+  }
+
+
+  .auth-card-header h2,
+  .signup-card .auth-card-header h2 {
+    font-size: 27px !important;
+    letter-spacing: -1px !important;
+  }
+
+
+  .auth-card-header p,
+  .signup-card .auth-card-header p {
+    margin-top: 6px !important;
+
+    font-size: 12px !important;
+  }
+
+
+  /* 폼 */
+  .auth-form,
+  .signup-card .auth-form {
+    gap: 14px !important;
+  }
+
+
+  .auth-field,
+  .signup-card .auth-field {
+    gap: 6px !important;
+  }
+
+
+  .auth-field > span {
+    font-size: 12px !important;
+  }
+
+
+  .auth-field input,
+  .signup-card .auth-field input,
+  .auth-select,
+  .signup-card .auth-select {
+    box-sizing: border-box !important;
+
+    width: 100% !important;
+    height: 47px !important;
+
+    padding: 0 13px !important;
+
+    border-radius: 12px !important;
+
+    /*
+      iPhone에서 input 포커스 시
+      Safari 자동 확대 방지
+    */
+    font-size: 16px !important;
+  }
+
+
+  .auth-field-hint {
+    font-size: 9px !important;
+  }
+
+
+  /* 로그인 / 회원가입 버튼 */
+  .auth-submit-button,
+  .signup-card .auth-submit-button {
+    box-sizing: border-box !important;
+
+    width: 100% !important;
+    height: 49px !important;
+
+    margin-top: 2px !important;
+
+    border-radius: 13px !important;
+
+    font-size: 13px !important;
+  }
+
+
+  /* 로그인 ↔ 회원가입 전환 */
+  .auth-divider {
+    margin: 20px 0 16px !important;
+  }
+
+
+  .auth-switch,
+  .signup-switch {
+    margin-top: 0 !important;
+
+    flex-wrap: wrap !important;
+
+    font-size: 12px !important;
+  }
+
+
+  .auth-switch button {
+    font-size: 12px !important;
+  }
+
+}
