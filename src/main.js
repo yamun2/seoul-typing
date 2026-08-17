@@ -9245,25 +9245,26 @@ let currentValidKeyCount = 0;
 
 
   // 서울 종주
-  // → 종주 완전히 종료하고 홈으로
-  if (gameMode === "tour") {
-    gameMode = "region";
+// → 현재 종주를 취소하고 서울 종주 시작 화면으로
+if (gameMode === "tour") {
+  tourGuIndex = 0;
+  tourResults = [];
 
-    tourGuIndex = 0;
-    tourResults = [];
+  tourStartTime = null;
+  tourKeyStrokeCount = 0;
 
-    tourStartTime = null;
-    tourKeyStrokeCount = 0;
+  tourAccuracyCorrect = 0;
+  tourAccuracyWrong = 0;
 
-    tourAccuracyCorrect = 0;
-    tourAccuracyWrong = 0;
+  tourCompletedDongCount = 0;
 
-    tourCompletedDongCount = 0;
+  currentGameSessionId = null;
+  currentGameSessionPromise = null;
 
-    showHomeScreen();
+  showTourCountdownScreen();
 
-    return;
-  }
+  return;
+}
 
 
   // 일반 지역 모드
@@ -12606,15 +12607,15 @@ document.addEventListener("keydown", event => {
 
 
   // 타자 플레이 화면
-  const typingBack =
-    document.querySelector(
-      "#typing-back-button"
-    );
+const typingBack =
+  document.querySelector(
+    "#typing-back-button"
+  );
 
-  if (typingBack) {
-    typingBack.click();
-    return;
-  }
+if (typingBack) {
+  typingBack.click();
+  return;
+}
 
 
   // 일반 지역 시작 화면
