@@ -11,15 +11,24 @@ inject();
 const app = document.querySelector("#app");
 
 function getSortedKoreaRegions() {
-  return Object.keys(koreaRegions).sort((a, b) => {
 
-    // 서울은 무조건 맨 위
-    if (a === "서울특별시") return -1;
-    if (b === "서울특별시") return 1;
+  const regions =
+    Object.keys(koreaRegions).sort((a, b) => {
 
-    // 나머지는 가나다순
-    return a.localeCompare(b, "ko");
-  });
+      // 서울은 무조건 맨 위
+      if (a === "서울특별시") return -1;
+      if (b === "서울특별시") return 1;
+
+      // 나머지는 가나다순
+      return a.localeCompare(b, "ko");
+    });
+
+
+  // 기타는 항상 맨 아래
+  return [
+    ...regions,
+    "기타"
+  ];
 }
 
 let guSvg = null;
@@ -1879,6 +1888,9 @@ function showAuthScreen() {
       return;
     }
 
+    if (selectedRegion === "기타") {
+  return;
+}
 
     const cities =
       koreaRegions[selectedRegion];
@@ -2539,6 +2551,9 @@ region1.addEventListener("change", () => {
     return;
   }
 
+if (selectedRegion === "기타") {
+  return;
+}
 
   const cities =
     koreaRegions[selectedRegion];
